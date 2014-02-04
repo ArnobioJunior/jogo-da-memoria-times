@@ -1,9 +1,11 @@
 package view;
 
+import app.Main;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -27,6 +29,12 @@ public class GameGUI extends BorderPane {
 		final ImageView im10 = new ImageView("/imagens/1.png");
 		final ImageView im11 = new ImageView("/imagens/1.png");
 		final ImageView im12 = new ImageView("/imagens/1.png");
+		Button menuVoltar = new Button("MENU");
+		menuVoltar.setPrefSize(90, 50);
+		
+		HBox hboxMenu = new HBox(30);
+		hboxMenu.getChildren().add(menuVoltar);
+		
 		
 		HBox hbox1 = new HBox(20);
 		hbox1.getChildren().addAll(im1,im2,im3,im4);
@@ -37,17 +45,25 @@ public class GameGUI extends BorderPane {
 		HBox hbox3 = new HBox(20);
 		hbox3.getChildren().addAll(im9,im10,im11,im12);
 		
-		
+		hboxMenu.setAlignment(Pos.TOP_RIGHT);
 		hbox1.setAlignment(Pos.CENTER);
 		hbox2.setAlignment(Pos.CENTER);
 		hbox3.setAlignment(Pos.CENTER);
 		
 		VBox vbox = new VBox(20);
-		vbox.getChildren().addAll(hbox1,hbox2,hbox3);
-		vbox.setAlignment(Pos.CENTER_RIGHT);
+		vbox.getChildren().addAll(hboxMenu,hbox1,hbox2,hbox3);
+		vbox.setAlignment(Pos.CENTER);
+		setRight(hboxMenu);
 		setCenter(vbox);
 
-		
+		menuVoltar.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				Main.mudarTela(new MenuGUI());
+						
+			}
+		});
 		
 		//Da linha 48 .. 390
 		im1.setOnMouseClicked(new EventHandler<Event>() {
